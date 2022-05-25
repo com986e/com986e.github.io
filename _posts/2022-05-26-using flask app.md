@@ -21,7 +21,7 @@ ufos = pd.read_csv('../input/hknu-ml-exercise9/ufos.csv')
 ufos.head()
 ```
 
-![image.png](attachment:20af0215-0950-4f84-9848-c792bb0cfac7.png)
+![KakaoTalk_20220526_011327821](https://user-images.githubusercontent.com/79626396/170310816-9affbf4e-a7a5-462e-93cc-04cec6e58426.png)
 UFO 목격 데이터를 작은 데이터프레임으로 변환한 후 Country 카테고리의 고유값을 확인한다.
 
 ```python
@@ -30,7 +30,7 @@ ufos = pd.DataFrame({'Seconds': ufos['duration (seconds)'], 'Country': ufos['cou
 ufos.Country.unique()
 ```
 
-![image.png](attachment:354ad8d2-2f34-4a86-a13a-3a2600d5407c.png)
+![KakaoTalk_20220526_011346749](https://user-images.githubusercontent.com/79626396/170310851-c38e65d8-e02d-40ea-a1ec-aa41d2c348e7.png)
 
 NaN 값을 삭제한 후, 1초 ~ 60초 내의 목격 데이터만 로드하여 처리할 하는 데이터의 양을 경감한다.
 
@@ -43,7 +43,7 @@ ufos = ufos[(ufos['Seconds'] >= 1) & (ufos['Seconds'] <= 60)]
 ufos.info()
 ```
 
-![image.png](attachment:b5ea6c2c-4c6f-48db-826c-70627b6e087e.png)
+![KakaoTalk_20220526_011409075](https://user-images.githubusercontent.com/79626396/170310871-57b9bbae-90f2-45f6-98df-b47ac127b161.png)
 
 LabelEncoder : 국가의 텍스트 값을 숫자로 치환하기 위하여 사이킷-런의 라이브러리를 로드한다.
 
@@ -58,7 +58,7 @@ ufos['Country'] = LabelEncoder().fit_transform(ufos['Country'])
 ufos.head()
 ```
 
-![image.png](attachment:bcd2e5d4-011c-4ece-8f9a-f639a07bf88f.png)
+![KakaoTalk_20220526_011431345](https://user-images.githubusercontent.com/79626396/170310887-be5421c1-dc49-4935-af1c-37c3fc19b87c.png)
 
 **모델 구축하기**
 
@@ -91,7 +91,7 @@ print('Predicted labels: ', predictions)
 print('Accuracy: ', accuracy_score(y_test, predictions))
 ```
 
-![image.png](attachment:8d628308-6a80-4ce9-9324-9147eb4222fe.png)
+![KakaoTalk_20220526_011459996](https://user-images.githubusercontent.com/79626396/170310922-930ce27a-a259-4db5-821d-d0c9cdb47e34.png)
 
 **모델을 Pickle하기**
 
@@ -109,7 +109,7 @@ model = pickle.load(open('ufo-model.pkl','rb'))
 print(model.predict([[50,44,-12]]))
 ```
 
-![image.png](attachment:093f1f32-7d8d-46a6-b004-3de4aced56dc.png)
+![KakaoTalk_20220526_011526383](https://user-images.githubusercontent.com/79626396/170310938-b961cc2f-de41-4598-acfd-1e88762b787f.png)
 
 **Flask 앱 만들기**
 
@@ -204,4 +204,5 @@ print(model.predict([[50,44,-12]]))
 
 실행 결과는 이러하다.
 
-![image.png](attachment:0e5664eb-c8dc-4f50-89fb-d2874d4dd5b6.png)
+![KakaoTalk_20220526_011616086](https://user-images.githubusercontent.com/79626396/170310962-86092d46-c45b-41be-9616-9ad7e3499460.png)
+
